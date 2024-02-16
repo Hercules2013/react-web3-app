@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+This is a [Create React App](https://create-react-app.dev/) project bootstrapped with [`create-react-app`](https://create-react-app.dev/docs/getting-started) to showcase how to integrate the @uniswap/widgets package in your own projects. It uses react-scripts@5.0.0.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## widgets-cra5
 
-## Available Scripts
+![Uniswap Widgets](uniswap-widgets.png)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+To start the demo:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+yarn          # install dependencies
+yarn start    # run the development server
+# or
+npm           # install dependencies
+npm run start # run the development server
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Navigate to [http://localhost:3000](http://localhost:3000) to see the widget.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The `SwapWidget` component is passed everything it needs to render:
 
-### `npm run build`
+- `jsonRpcEndpoint`: a JSON-RPC endpoint, or an `@ethersproject` `JsonRpcProvider`; in this case "https://cloudflare-eth.com"
+- `tokenList`: a TokenList; in this case "https://gateway.ipfs.io/ipns/tokens.uniswap.org"
+- `provider`: an EIP1193 Provider, or an `@ethersproject` `JsonRpcProvider`; in this case from `connectors.ts`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In addition, it is passed these optional props to flesh out the demo:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `locale`: the locale in which to render, in this case "en-US"
+- `onConnectWallet`: a callback to invoke when a user clicks "Connect your wallet"
+- `defaultInputTokenAddress`: the default input token address, or "NATIVE" for Ether
+- `defaultInputAmount`: the default input token amount
+- `defaultOutputTokenAddress`: the default output token amount, in this case the address of the Uniswap (UNI) token
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For all available props (including theming), refer to the documentation at https://docs.uniswap.org/sdk/widgets/swap-widget.
 
-### `npm run eject`
+### Passing a provider
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project uses [@web3-react](https://github.com/NoahZinsmeister/web3-react) to connect to an Ethereum Provider. The demo uses both MetaMask and WalletConnect. See `src/components/Web3Connectors.tsx`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The `SwapWidget` component will accept any EIP1193 Provider or `@ethersproject` `JsonRpcProvider`, so you are not limited to using `@web3-react`. If you _do_ use a `JsonRpcProvider`, you can pass it in the same way, to the widget's `provider` prop.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Localization
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The `SwapWidget` component will render in whichever supported locale is passed to the `locale` prop. The demo uses en-US, but includes a selector to demonstrate additional locales.
 
-## Learn More
+### Known issues with Create React App
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Many dependencies have not updated to support sourcemaps for CRA. To get around this, you can disable sourcemaps by setting GENERATE_SOURCEMAP=false, either when you run the script or in your .env file.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- CRAv4 must use different import path for fonts. To import the widget using CRAv4:
 
-### Code Splitting
+      import { SwapWidget } from '@uniswap/widgets/index.js'
+      import '@uniswap/widgets/dist/fonts.css'
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Additional documentation
 
-### Analyzing the Bundle Size
+- [What is Uniswap](https://docs.uniwap.org/)
+  Learn about the Uniswap Protocol and available SDKs.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Swap Widget Docs](https://docs.uniswap.org/sdk/widgets/swap-widget)
+  Explore the Swap Widget's features and API.
 
-### Making a Progressive Web App
+- [Discord](https://discord.gg/ybKVQUWb4s)
+  Hop into #widgets for realtime help.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [GitHub](https://github.com/Uniswap/interface/blob/main/src/lib/index.tsx)
+  View the Swap Widget's source.
