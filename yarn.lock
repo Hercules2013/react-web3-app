@@ -4933,11 +4933,6 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
-coinlist@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/coinlist/-/coinlist-3.1.2.tgz#75c891c8b2d42f6d36794eb16ea9d626232884a4"
-  integrity sha512-tTzy4W+6zPDKBUcmcFSVeDJEYuF4rf6In3uc4e03swkZ+XaKnWdJdTxozLoZcoGU+Fg3J3ya3fzwQTanY9gEtw==
-
 collect-v8-coverage@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/collect-v8-coverage/-/collect-v8-coverage-1.0.1.tgz"

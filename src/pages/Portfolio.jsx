@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import { Button, Table } from 'antd'
+import { Table } from 'antd'
 import { useQuery, gql } from '@apollo/client'
 import moment from 'moment'
-import coinlist from 'coinlist'
 
 // Define a GraphQL query
 const GET_TRANSACTIONS = gql`
