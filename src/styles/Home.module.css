@@ -14,10 +14,10 @@
   min-height: 100vh;
   padding: 0 0 2rem;
   flex: 1;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .title {
@@ -37,6 +37,12 @@
 .connectors {
   align-self: flex-start;
   border-radius: 1em;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+  border: 1px dashed;
+  background-color: white;
 }
 
 @keyframes spotlight {
