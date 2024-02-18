@@ -1,6 +1,6 @@
-import { Table } from 'antd'
-import { useQuery, gql } from '@apollo/client'
-import moment from 'moment'
+import { Table } from 'antd';
+import { useQuery, gql } from '@apollo/client';
+import moment from 'moment';
 
 // Define a GraphQL query
 const GET_TRANSACTIONS = gql`
