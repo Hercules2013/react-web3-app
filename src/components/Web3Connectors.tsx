@@ -1,5 +1,5 @@
 import styles from '../styles/Connectors.module.css'
-import { connectors, getConnectorName, Web3Connector } from '../connectors'
+import { connectors, getConnectorName, Web3Connector } from './connectors'
 import { useCallback } from 'react'
 import { Button } from 'antd'
 
