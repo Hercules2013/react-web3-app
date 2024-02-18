@@ -5,7 +5,7 @@ import { useActiveProvider } from '../components/connectors';
 
 import { JSON_RPC_URL, TOKEN_LIST, UNI } from '../utils/constants';
 
-import styles from '../styles/Swap.module.css';
+import styles from '../styles/swap.module.css';
 
 const Swap = () => {
   // The provider to pass to the SwapWidget.

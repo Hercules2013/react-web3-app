@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Button } from 'antd';
 import { connectors, getConnectorName, Web3Connector } from './connectors';
-import styles from '../styles/Connectors.module.css';
+import styles from '../styles/connectors.module.css';
 
 function Connector({ web3Connector }: { web3Connector: Web3Connector }) {
   const [connector, hooks] = web3Connector
