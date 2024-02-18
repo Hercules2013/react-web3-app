@@ -20,7 +20,7 @@ export default function App() {
             <Link to="/">Swap</Link>
           </Menu.Item>
           <Menu.Item icon={<OrderedListOutlined rev="twoToneColor" />} key="/portfolio">
-            <Link to="/portfolio">Portfolio</Link>
+            <Link to="/portfolio">Transaction</Link>
           </Menu.Item>
         </Menu>
       </Header>
