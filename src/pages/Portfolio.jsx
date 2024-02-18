@@ -7,7 +7,7 @@ import coinlist from 'coinlist'
 // Define a GraphQL query
 const GET_TRANSACTIONS = gql`
 query MyQuery {
-  swaps(first: 10, orderBy: timestamp, orderDirection: desc) {
+  swaps(orderBy: timestamp, orderDirection: desc, subgraphError: allow) {
     amount0
     amount1
     amountUSD
@@ -70,9 +70,7 @@ const PortfolioInterface = () => {
   }
 
   return (
-    <>
-      <Table columns={columns} dataSource={data ? data.swaps : []} loading={loading} />
-    </>
+    <Table columns={columns} dataSource={data ? data.swaps : []} loading={loading} />
   )
 }
 

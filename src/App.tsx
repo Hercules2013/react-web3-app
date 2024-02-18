@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <main className={styles.main}>
-      <Header style={{ backgroundColor: 'white', boxShadow: 'lightgray 0px 2px 5px' }}>
+      <Header className={styles.header}>
         <Menu mode="horizontal" selectedKeys={[location.pathname]}>
           <Menu.Item icon={<SwapOutlined rev="twoToneColor" />} key="/">
             <Link to="/">Swap</Link>
@@ -24,7 +24,7 @@ export default function App() {
           </Menu.Item>
         </Menu>
       </Header>
-      <main style={{ margin: '1rem' }}>
+      <main className={styles.main}>
         <Routes>
           <Route path="/" element={<SwapPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
