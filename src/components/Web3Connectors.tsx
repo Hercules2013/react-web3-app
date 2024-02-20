@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Button } from 'antd';
+import { Button } from '@mui/material';
 import { connectors, getConnectorName, Web3Connector } from './connectors';
 import styles from '../styles/connectors.module.css';
 

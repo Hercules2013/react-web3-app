@@ -1,35 +1,42 @@
+import React from 'react';
 import { Route, Routes, Link, useLocation } from 'react-router-dom';
-
 import SwapPage from './pages/Swap';
 import PortfolioPage from './pages/Portfolio';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
-import styles from './App.module.css';
-
-import { Layout, Menu } from 'antd';
-import { SwapOutlined, OrderedListOutlined } from '@ant-design/icons';
-const { Header } = Layout;
+import styles from './App.module.css'; // Adjust your CSS module as necessary
 
 export default function App() {
   const location = useLocation();
 
+  // Function to map pathname to tab value
+  const getPathTabValue = (path: string) => {
+    switch(path) {
+      case '/': return 0;
+      case '/portfolio': return 1;
+      default: return 0;
+    }
+  };
+
   return (
     <main className={styles.main}>
-      <Header className={styles.header}>
-        <Menu mode="horizontal" selectedKeys={[location.pathname]}>
-          <Menu.Item icon={<SwapOutlined rev="twoToneColor" />} key="/">
-            <Link to="/">Swap</Link>
-          </Menu.Item>
-          <Menu.Item icon={<OrderedListOutlined rev="twoToneColor" />} key="/portfolio">
-            <Link to="/portfolio">Transaction</Link>
-          </Menu.Item>
-        </Menu>
-      </Header>
-      <main className={styles.main}>
+      <AppBar position="static" color="default" className={styles.header}>
+        <Toolbar>
+          <Tabs value={getPathTabValue(location.pathname)} indicatorColor="primary" textColor="primary">
+            <Tab label="Swap" component={Link} to="/" />
+            <Tab label="Transaction" component={Link} to="/portfolio" />
+          </Tabs>
+        </Toolbar>
+      </AppBar>
+      <main className={styles.mainContent}>
         <Routes>
           <Route path="/" element={<SwapPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
         </Routes>
       </main>
     </main>
-  )
+  );
 }
