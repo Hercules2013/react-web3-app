@@ -1,12 +1,6 @@
 import * as React from 'react';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import Paper from '@mui/material/Paper';
-import TablePagination from '@mui/material/TablePagination';
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper, TablePagination, CircularProgress } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import { useQuery, gql } from '@apollo/client';
 import moment from 'moment';
 
@@ -32,6 +26,20 @@ const PortfolioInterface = () => {
   const { loading, error, data } = useQuery(GET_TRANSACTIONS);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  
+  // Define breakpoints for responsive behavior
+  const match1 = useMediaQuery('(min-width:860px)');
+  const match2 = useMediaQuery('(min-width:815px)');
+  const match3 = useMediaQuery('(min-width:730px)');
+  const match4 = useMediaQuery('(min-width:640px)');
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+        <CircularProgress />
+      </div>
+    );
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -54,27 +62,27 @@ const PortfolioInterface = () => {
   return (
     <div>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="transaction table">
+        <Table aria-label="transaction table">
           <TableHead>
             <TableRow>
               <TableCell>Swaps</TableCell>
-              <TableCell align="right">Total Value</TableCell>
-              <TableCell align="right">Token Amount</TableCell>
-              <TableCell align="right">Token Amount</TableCell>
-              <TableCell align="right">Account</TableCell>
+              {match1 && <TableCell align="right">Total Value</TableCell>}
+              {match2 && <TableCell align="right">Token Amount</TableCell>}
+              {match3 && <TableCell align="right">Token Amount</TableCell>}
+              {match4 && <TableCell align="right">Account</TableCell>}
               <TableCell align="right">Time</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {(data ? data.swaps : []).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((record) => (
-              <TableRow key={record.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow key={record.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
                   {`Swap ${record.token1.symbol} for ${record.token0.symbol}`}
                 </TableCell>
-                <TableCell align="right">{"$" + formatValue(parseFloat(record.amountUSD))}</TableCell>
-                <TableCell align="right">{formatValue(parseFloat(record.amount0)) + " " + record.token0.symbol}</TableCell>
-                <TableCell align="right">{formatValue(parseFloat(record.amount0)) + " " + record.token1.symbol}</TableCell>
-                <TableCell align="right">{record.origin}</TableCell>
+                {match1 && <TableCell align="right">{"$" + formatValue(parseFloat(record.amountUSD))}</TableCell>}
+                {match2 && <TableCell align="right">{formatValue(parseFloat(record.amount0)) + " " + record.token0.symbol}</TableCell>}
+                {match3 && <TableCell align="right">{formatValue(parseFloat(record.amount1)) + " " + record.token1.symbol}</TableCell>}
+                {match4 && <TableCell align="right">{record.origin}</TableCell>}
                 <TableCell align="right">{moment.unix(record.timestamp).fromNow()}</TableCell>
               </TableRow>
             ))}

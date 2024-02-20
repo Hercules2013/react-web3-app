@@ -110,23 +110,14 @@ export default function CoinDialog(props) {
       onClose={() => exit(undefined)}
       fullWidth
       maxWidth="sm"
-      classes={{ paper: styles.dialogContainer }}
+      // classes={{ paper: styles.dialogContainer }}
     >
-      <DialogTitle onClose={() => exit(undefined)}>Select Coin</DialogTitle>
+      <DialogTitle>Select Coin</DialogTitle>
 
       <hr className={styles.hr} />
 
       <div className={styles.coinContainer}>
         <Grid container direction="column" spacing={1} alignContent="center">
-          <input
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder="Paste Address"
-            className={styles.address}
-          />
-          {error && <Typography color="error">{error}</Typography>}
-          <hr className={styles.hr} />
-
           <Grid item className={styles.coinList}>
             <Grid container direction="column">
               {coins.map((coin, index) => (
