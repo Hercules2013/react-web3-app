@@ -78,7 +78,7 @@ const PortfolioInterface = () => {
             {(data ? data.swaps : []).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((record) => (
               <TableRow 
                 key={record.id} 
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 }, '&:hover': { backgroundColor: '#EEFFFFFF', cursor: 'pointer' } }}
                 onClick={() => window.open(`https://etherscan.io/tx/${record.id.split('#')[0]}`)}
               >
                 <TableCell component="th" scope="row">
