@@ -12,6 +12,7 @@ const GET_TRANSACTIONS = gql`
       amountUSD
       origin
       timestamp
+      id
       token0 {
         symbol
       }
@@ -75,7 +76,11 @@ const PortfolioInterface = () => {
           </TableHead>
           <TableBody>
             {(data ? data.swaps : []).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((record) => (
-              <TableRow key={record.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow 
+                key={record.id} 
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                onClick={() => window.open(`https://etherscan.io/tx/${record.id.split('#')[0]}`)}
+              >
                 <TableCell component="th" scope="row">
                   {`Swap ${record.token1.symbol} for ${record.token0.symbol}`}
                 </TableCell>
